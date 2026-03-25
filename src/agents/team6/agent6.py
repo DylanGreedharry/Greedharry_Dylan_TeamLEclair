@@ -12,7 +12,7 @@ class Agent6(KartAgent):
         self.agent_positions = []
         self.obs = None
         self.isEnd = False
-        self.name = "Team6" # replace with your chosen name
+        self.name = "Greedharry-Dylan"
 
     def reset(self):
         self.obs, _ = self.env.reset()
@@ -22,8 +22,16 @@ class Agent6(KartAgent):
         return self.isEnd
 
     def choose_action(self, obs):
-        acceleration = random.random()
-        steering = random.random()
+    	# Nous mettons une valeur faible tel que 0.1 
+    	# afin que le kart ne finisse pas dans un mur
+    	# et qu'il puisse faire un tour sur lui-même
+        acceleration = 0.1
+        # Le steering est à 1 afin qu'il puisse faire ne steer qu'à droite
+        # et faire un tour sur lui-même à droite.
+        # Mais on aurait pu mettre -1 également 
+        # afin que le kart fait un tour sur lui-même qu'à gauche
+        steering = 1
+        # steering = -1
         action = {
             "acceleration": acceleration,
             "steer": steering,
