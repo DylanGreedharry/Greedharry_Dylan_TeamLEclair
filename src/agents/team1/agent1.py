@@ -22,6 +22,8 @@ class Agent1(KartAgent):
         return self.isEnd
 
     def choose_action(self, obs):
+        # Pendant 60 frames, le kart fait un tour sur
+        # lui-même vers la droite
         if (self.time_marche_arr_init < 60):
             acceleration = 0.1
             steering = 1
@@ -37,9 +39,11 @@ class Agent1(KartAgent):
             self.time_marche_arr_init += 1
             print(self.time_marche_arr_init)
             return action
+        #A partir de ce moment-là le kart est dans la bonne position
+        # Et il roule en marche arrière jusqu'à la fin de la course
         else:
             acceleration = 0
-            steering = obs["paths_end"][self.path_lookahead-1][0]
+            steering = obs["paths_end"][self.path_lookahead-1][0] #Visé du troisième
             action = {
                 "acceleration": acceleration,
                 "steer": steering,
